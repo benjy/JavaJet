@@ -19,11 +19,7 @@ public class Main {
 		catch(Exception ex)
 		{
 			System.out.println(ex.getMessage());
-		}
-		
-		//JetLogin2 j = new JetLogin2();
-		//j.makeRequest();
-		
+		}	
 	}
 
 }
