@@ -1,7 +1,6 @@
 package javajet;
 
 import java.io.*;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.util.*;
 

@@ -1,12 +1,8 @@
 package javajet;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.Reader;
 import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
@@ -25,12 +21,12 @@ import java.util.Date;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class JavaJet 
+public class JavaJet
 {
 	private URL JET_LOGIN_URL;
 	private CookieManager cookieManager;
 	
-	public JetLogin() throws MalformedURLException
+	public JavaJet() throws MalformedURLException
 	{
 
         cookieManager = new CookieManager();
@@ -41,16 +37,18 @@ public class JavaJet
 
 	}
 	
+	
+	
 	void login( String username, String password, int polltime ) throws Exception
 	{
 		int poll = polltime;
-		String cookieContent = "";
         String targetUrl= "http://www.google.com";
         String charset = "UTF-8";
         String params = "username="+URLEncoder.encode(username, charset)+"&password="+URLEncoder.encode(password, charset)+"&targeturl="+
         URLEncoder.encode(targetUrl, charset)+"&submit="+URLEncoder.encode("Logon", charset);
         
         new PollTimer(JET_LOGIN_URL, params, poll);
+        
 	}
 	
 	void viewRequestProperties(HttpsURLConnection urlc)
@@ -69,8 +67,15 @@ public class JavaJet
 		} 		
 	}
 	
+	boolean removeCookies() throws IOException, URISyntaxException
+	{
+		viewCookies();
+		return cookieManager.getCookieStore().removeAll();
+	}
+	
 	void viewCookies() throws IOException, URISyntaxException
 	{
+		
 		Map<String, List<String>> map = new HashMap<String, List<String>>();
 		Map<String, List<String>> map2;
 		map2 = cookieManager.get(JET_LOGIN_URL.toURI(), map);

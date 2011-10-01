@@ -7,19 +7,19 @@ public class Main {
 	 */
 	public static void main(String[] args) 
 	{
-		String username = "";
-		String password = "";
-		int poll = 15;
+
 		
 		try
 		{
-			JetLogin jl = new JetLogin();
-			jl.login(username, password, poll);	
+			//JavaJet jl = new JavaJet();
+			//jl.login(username, password, poll);
+			new JavaJetGUI();
+			
 		}
 		catch(Exception ex)
 		{
 			System.out.println(ex.getMessage());
-		}	
+		}
 	}
 
 }
